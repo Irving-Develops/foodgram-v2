@@ -1,0 +1,78 @@
+.search {
+    display: flex;
+    align-items: center;
+}
+
+.search input{
+    width: 270px;
+    height: 36px;
+    background-color: #efefef;
+    padding: 3px 30px 3px 35px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.search svg:first-child {
+    position: relative;
+    left: 35px;
+    /* color: grey; */
+}
+
+.svg2:hover {
+    cursor: pointer;
+}
+
+
+.searchContainer {
+    height: 450px;
+    width: 375px;
+    background-color: white;
+    color: var(--text-color);
+}
+
+.searchUserImg {
+    min-width: 54px;
+    min-height: 54px;
+}
+.searchUserImg img {
+    border-radius: 100%;
+    width: 54px;
+    height: 54px;
+    object-fit: cover;
+    margin: 12px;
+}
+
+.userContainer {
+    display: flex;
+    align-items: center;
+}
+
+.searchContainer {
+    position: absolute;
+    left: 36%;
+    top: 58px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.searchContainer a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.userNames{
+    display: flex;
+    font-size: 14px;
+    gap: 6px;
+    flex-direction: column;
+}
+
+.userNames span:first-child {
+    font-weight: bold;
+}
+
+.userNames span:last-child {
+    color: var(--grey-text);
+}

@@ -1,0 +1,94 @@
+.post-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.post-wrapper {
+    border: var(--border);
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: white;
+    margin-bottom: 50px;
+    width: 32.5%;
+}
+/* .post{
+    height: 50%;
+} */
+.post img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.post-edit img {
+    width: 600px;
+    height: 600px;
+    object-fit: cover;
+}
+/* USERNAME SECTION */
+.user-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    overflow: -moz-hidden-unscrollable;
+}
+.user-img {
+    width: 42px;
+    height: 42px;
+    margin-right: 12px;
+    margin-left: 12px;
+}
+.user-img img{
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.username a{
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--text-color)
+
+}
+.username a:visited{
+    color: var(--text-color)
+}
+
+/* CAPTION SECTION */
+.caption-container {
+    font-size: 14px;
+    margin: 12px;
+}
+
+#owner {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+/* Buttons */
+
+#user-profile-modal {
+    margin-left: auto;
+}
+#user-profile-modal button{
+    margin-left: auto;
+    background-color: white;
+    border: none;
+}
+
+#disabled button{
+    color: var(--disabled);
+    cursor: not-allowed
+}
+
+
+.svg-container {
+    display: flex;
+    margin: 12px;
+    gap: 12px;
+}

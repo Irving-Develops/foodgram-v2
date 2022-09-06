@@ -1,0 +1,22 @@
+/* TODO Add site wide styles */
+:root {
+    --grey-bg: rgba(250,250,250,255);
+    --text-color: #262626;
+    --blue-button: #0894f4;
+    --dark-blue: #385185;
+    --grey-button: #e8e4e4;
+    --grey-text: #8e8e8e;
+    --grey-button-bg: #e5e5e4;
+    --disabled: #bfdffd;
+    --border: 1px solid #dbdbdb;
+}   
+
+
+body {
+    margin: 0;
+    background-color: var(--grey-bg);
+}
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}

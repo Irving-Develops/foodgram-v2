@@ -1,0 +1,33 @@
+#delete-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100px;
+}
+
+#delete-header h5 {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color)
+}
+
+#delete-header p {
+    color: var(--grey-text);
+    margin: 0;
+    padding: 14px 0 0;
+    font-size: 12px;
+}
+
+#delete {
+    font-weight: bold;
+    font-size: 14px;
+    color: red;
+}
+#post-buttons {
+    margin-left: auto;
+}
+#post-buttons:first-child {
+    color: red;
+}

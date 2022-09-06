@@ -1,0 +1,147 @@
+.userContainer {
+    display: flex;
+    flex-direction: column;
+    width: 896px;
+    margin: 0 auto 100px auto;
+}
+
+.userDetails {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0 auto 44px auto;
+    margin-top: 100px;
+}
+
+.userDetails img {
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.userDetails span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.userImg {
+    display: flex;
+    justify-content: center;
+    width: 291px;
+}
+/* .postNum {
+    margin-bottom: 20px;
+} */
+
+.postNum span{
+    font-weight: 400;
+}
+
+.userPostsContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 280px);
+    justify-content: center;
+    margin: 0 auto;
+    padding-top: 53px;
+    border-top: var(--border) ;
+    width: 100%;
+    gap: 28px;
+}
+
+
+.imgWrapper {
+    width: 100%;
+    height: 280px;
+}
+
+
+.imgWrapper img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+
+.userHeader {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.userHeader h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.userHeader button {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    width: 93px;
+    height: 30px;
+    padding: 5px 9px;
+    background-color: white;
+    border: var(--border);
+    border-radius: 3px;
+}
+
+.userStats {
+    display: flex;
+    gap: 30px;
+}
+
+
+.modalContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 470px;
+    height: 300px;
+}
+
+
+.modalHeader {
+    display: flex;
+    text-align: center;
+    width: 100%;
+    border-bottom: var(--border);
+}
+.modalHeader button {
+    background-color: white;
+    border: none;
+    margin-left: 20px;
+}
+
+.modalHeader p {
+    margin: 16px auto;
+    padding-right: 70px;
+}
+
+.imgContainer  {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+.icon {
+    width: 50%;
+}
+
+.imgContainer img{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+.modalBody {
+    display: flex;
+    margin: auto auto 50px auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.detailsWrapper {
+    flex-grow: 1;
+}

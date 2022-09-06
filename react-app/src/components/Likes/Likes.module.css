@@ -1,0 +1,17 @@
+.likesContainer {
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+ white-space: nowrap;
+ width: 24px;
+}
+
+.likeSvg {
+    fill: #ed4956;
+    color: #ed4956;
+}
+
+.likesContainer span {
+    font-weight: bold;
+    font-size: 14px;
+}

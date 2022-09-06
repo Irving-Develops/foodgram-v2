@@ -1,0 +1,94 @@
+.chatContainer {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+    height: 85vh;
+}
+
+.otherUsername {
+    position: relative;
+    top: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    padding: 0 40px;
+    border-bottom: var(--border);
+    gap: 12px;
+    font-weight: bold;
+}
+
+.otherUsername img {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+.messageContainer {
+    height: 79%;
+    overflow: scroll;
+}
+
+.messageWrapper {
+    display: flex;
+    margin: 5px 0;
+    flex-direction: column;
+    overflow-wrap: break-word;
+
+}
+
+.messageOwner {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 16px;
+    max-width: 234px;
+    word-break: break-all;
+    margin: 0 20px 0 auto;
+    border: var(--border);
+    border-radius: 30px;
+    background-color: #efefef;
+}
+
+
+.otherUser {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 16px;
+    max-width: 234px;
+    border: var(--border);
+    border-radius: 30px;
+    word-break: break-all;
+    margin: 0 auto 0 20px;
+}
+
+.createMessage {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 3px;
+    width: 100%;
+    height: 84px;
+    background-color: white;
+}
+
+.createMessage input {
+    padding: 10px 40px;
+    width: 543px;
+    height: 44px;
+    border: var(--border);
+    border-radius: 20px;
+
+}
+
+.createMessage button {
+    position: absolute;
+    right: 45px;
+    outline: none;
+    border: none;
+    background-color: white;
+    color: var(--blue-button);
+}

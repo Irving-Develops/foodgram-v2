@@ -1,0 +1,166 @@
+
+#modal {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+
+#modal-background {
+  z-index: 4;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#modal-content {
+  z-index: 5;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  /* border: var(--border); */
+  border-radius: 15px;
+  margin: 15px 0;
+  /* width: 400px; */
+  overflow: auto;
+}
+
+#modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+#post-buttons {
+  display: flex;
+}
+#post-buttons button:hover{
+  text-decoration: underline;
+}
+
+#post-buttons button:nth-child(2){
+  border-left: var(--border);
+  border-right: var(--border);
+}
+
+#delete-post-modal {
+  display: flex;
+  flex-direction: column;
+}
+
+#post-modal-buttons {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+#post-modal-buttons button:hover{
+  background-color: var(--grey-button-bg);
+}
+
+#delete-post-modal button{
+  width: 400px;
+  background-color: white;
+  height: 48px;
+  border: none;
+} 
+#delete-post-modal button:nth-child(2){
+  border-top: var(--border);
+  border-bottom: var(--border);
+}
+
+.delete {
+  color: red;
+}
+
+#edit-post-modal {
+  display: flex;
+  border: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 941px;
+  /* height: 646px; */
+}
+
+#head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  border: var(--border);
+  height: 42px;
+}
+
+#caption {
+  /* border: var(--border); */
+  padding: 12px;
+  width: 100%;
+}
+
+#caption form, #caption textarea {
+  width: 100%;
+  height: 80%;
+}
+
+#caption textarea {
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+#edit-post-content {
+  display: flex;
+  height: 600px;
+}
+
+#caption button {
+  font-weight: bold;
+  position: relative;
+  right: -250px;
+  top: -75px;
+  border: none;
+  background-color: white;
+  color: var(--blue-button);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#empty {
+  width: 50px;
+}
+
+#cancel {
+  border: none;
+  background-color: white;
+  color: var(--text-color);
+  margin-left: 20px;
+}
+
+#edit {
+  height: 28px;
+}
+
+.user-pic-edit {
+  width: 28px;
+  height: 28px;
+}
+
+#profile-pic{
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+}
+#user-img{
+  width: 28px;
+  height: 28px;
+}
+

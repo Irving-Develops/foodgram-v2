@@ -1,0 +1,28 @@
+
+.container {
+    display: flex;
+    height: 616px;
+    width: 1061px;
+    background-color: white;
+}
+
+.post-img-container {
+    display: flex;
+    align-items: center;
+    background-color: black;
+}
+
+.post-img-container img {
+    width: 561px;
+    height: 561px;
+    object-fit: cover;
+}
+
+#comment-modal-buttons {
+    display: flex;
+}
+
+#edit-comment-modal {
+    width: 500px;
+    height: auto;
+}
