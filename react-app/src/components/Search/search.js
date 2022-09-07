@@ -29,7 +29,7 @@ export default function Search() {
     
     useEffect(() => {
         async function fetchData() {
-            const response = await fetch('/api/users/');
+            const response = await fetch('/api/users');
             const responseData = await response.json();
             setUsers(responseData.users);
         }

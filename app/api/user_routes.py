@@ -8,7 +8,7 @@ from app.s3_helpers import (upload_file_to_s3, allowed_file, get_unique_filename
 user_routes = Blueprint('users', __name__)
 
 
-@user_routes.route('/')
+@user_routes.route('', methods=['GET'])
 @login_required
 def users():
     users = User.query.all()
