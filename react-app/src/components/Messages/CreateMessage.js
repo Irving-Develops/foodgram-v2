@@ -12,7 +12,7 @@ import DeleteMessage from "./DeleteMessage";
 
 let socket;
 
-export default function CreateMessage({chatroomId, setUpToDate}) {
+export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
     const dispatch = useDispatch()
     const [message, setMessage] = useState("");
     const user = useSelector(state => state.session.user)
@@ -27,7 +27,6 @@ export default function CreateMessage({chatroomId, setUpToDate}) {
     //scrolls to newest message
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "auto" })
-        console.log("firing")
     }
 
 
@@ -57,6 +56,7 @@ export default function CreateMessage({chatroomId, setUpToDate}) {
         if(chatroomId) {
             dispatch(getChatroomsThunk())
             dispatch(getMessagesThunk(chatroomId))
+            setUpToDate(true)
 
         }
     }, [dispatch, chatroomId])
@@ -113,7 +113,7 @@ export default function CreateMessage({chatroomId, setUpToDate}) {
 
 
 
-    if(!messageObj || !chatroomUser || !messagesEndRef || !chatrooms) return null;
+    if(!messageObj || !chatroomUser || !messagesEndRef || !chatrooms || !upToDate) return "loading";
     return (
         <div className={classes.chatContainer}>
                 <div className={classes.otherUsername}>
