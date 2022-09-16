@@ -111,11 +111,6 @@ export default function CreateMessage({chatroomId, setUpToDate}) {
         setMessage("")
     }
 
-    // const handleDelete = async(message) => {
-    //     let deletedMessage = await dispatch(deleteMessageThunk(message))
-    //     await dispatch(getMessagesThunk(chatroomId))
-    // }
-
 
 
     if(!messageObj || !chatroomUser || !messagesEndRef || !chatrooms) return null;

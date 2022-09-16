@@ -25,7 +25,7 @@ class User(db.Model, UserMixin):
     full_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     username = db.Column(db.String(50), nullable=False, unique=True)
-    profile_pic = db.Column(db.String(255), default='https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg?20200418092106')
+    profile_pic = db.Column(db.String(255), default='https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg')
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # Relationships
@@ -64,7 +64,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'profile_pic': self.profile_pic,
             'likes': [post.id for post in self.liker],
-            # 'following': [user.id for user in self.followed],
+            'following': [user.id for user in self.followed],
             'followers': [user.id for user in self.followers]
         }
     
@@ -111,7 +111,8 @@ class Post(db.Model):
             'user_id': self.user_id,
             'created_at': self.created_at,
             'owner': self.owner.to_dict(),
-            'likes': [user.id for user in self.likes]
+            'likes': [user.id for user in self.likes],
+            'comments': []
         }
 
 

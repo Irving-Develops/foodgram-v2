@@ -1,4 +1,5 @@
 const GET_USERS = 'users/GET_USERS'
+const GET_USER = 'users/GET_USER'
 // const ADD_USER = 'user/ADD_USER'
 const EDIT_USER = 'user/EDIT_USER'
 
@@ -6,7 +7,6 @@ const EDIT_USER = 'user/EDIT_USER'
     type: GET_USERS,
     users
 })
-
 export const editUser = (user) => ({
   type: EDIT_USER,
   user
@@ -79,7 +79,7 @@ export default function userReducer(state = {}, action){
     switch (action.type) {
         case GET_USERS:
             action.users.forEach(user => newState[user.id] = user)
-            return newState
+            return newState       
         case EDIT_USER:
             newState[action.user.id] = action.user
             return newState

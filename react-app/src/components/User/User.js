@@ -17,10 +17,13 @@ function User() {
   const [showCommentModal2, setCommentModal2] = useState(false)
   const sessionUser = useSelector(state => state.session.user)
   const allUsers = useSelector(state => state.users)
+  // const user = Object.values(useSelector(state => state.users))[0]
   const posts = useSelector(state => state.posts)
   const user = Object.values(allUsers).filter(user => user.id === parseInt(userId))[0]
-  const following = Object.values(allUsers).filter(otherUsers => otherUsers.followers.includes(user.id)).length
+  // const following = Object.values(allUsers).filter(otherUsers => otherUsers.followers.includes(user.id)).length
 
+
+  console.log(user, "user")
   let myPosts;
   if(posts){
     myPosts = Object.values(posts).filter(post => post.owner.id === parseInt(userId))
@@ -66,10 +69,10 @@ function User() {
             <p><span>{myPosts.length} </span>posts</p>
             }
             <p><span>{user.followers.length} </span>follower</p>
-            <p><span>{following} </span>following</p>
+            <p><span>{user.following.length} </span>following</p>
           </div>
 
-          {showEditModal && sessionUser.id === user.id &&  (
+          {showEditModal && sessionUser.id === userId &&  (
             <Modal className={classes.modalContainer} onClose={() => {
               setEditModal(false)
             }}>

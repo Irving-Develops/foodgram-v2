@@ -1,3 +1,4 @@
+import {getCommentsOfPostsThunk} from './comments'
 const GET_POSTS = 'posts/GET_POSTS'
 const ADD_POST = 'posts/ADD_POST'
 const EDIT_POST = 'posts/EDIT_POST'
@@ -126,6 +127,7 @@ export const removeLikeThunk = (post) => async(dispatch) => {
 
 
 export default function postReducer(state = {}, action){
+    console.log(state, "in reducer post")
     let newState = {...state} 
     switch (action.type){
         case GET_POSTS:

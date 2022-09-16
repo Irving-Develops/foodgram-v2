@@ -11,11 +11,11 @@ export default function Follow({user}) {
     const users = useSelector(state => state.users)
     const [following, setFollowing] = useState(false)
     
-    let currentUser = Object.values(users).filter(user => user.id === sessionUser.id)
+    // let currentUser = Object.values(users).filter(user => user.id === sessionUser.id)
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        if(user.followers.includes(currentUser[0].id)){
+        if(user.followers.includes(sessionUser.id)){
             await dispatch(unfollowUserThunk(user))
             setFollowing(false)
         }else {
@@ -24,10 +24,10 @@ export default function Follow({user}) {
         }
     }
 
-    if(!currentUser) return null;
+    if(!sessionUser) return null;
     return (
         <>
-        {user.followers.includes(currentUser[0].id) ? 
+        {user.followers.includes(sessionUser.id) ? 
             <>
                 <form onSubmit={handleSubmit}>
                     <button>Unfollow</button>

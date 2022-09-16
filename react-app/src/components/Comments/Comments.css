@@ -4,6 +4,7 @@
     max-height: 516px;
     width: 100%;
     overflow: scroll;
+    margin-top: 15px;
 }
 
 .comment-container {

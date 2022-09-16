@@ -9,7 +9,6 @@ const SignUpForm = () => {
   const [full_name, setFullName] = useState('')
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [profile_pic, setProfilePic] = useState('')
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   // const [isDisabled, setIsDisabled] = useState(true)
@@ -31,7 +30,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(full_name, email, username, profile_pic, password));
+      const data = await dispatch(signUp(full_name, email, username, password));
       let formattedErr = []
       if (data) { 
         data.forEach(error =>  {
@@ -119,15 +118,6 @@ const SignUpForm = () => {
                 required
               ></input>
             </div>
-            {/* <div>
-              <label>Profile Picture</label>
-              <input
-                type='text'
-                name='profile_pic'
-                onChange={updateProfilePicture}
-                value={profile_pic}
-              ></input>
-            </div> */}
             <div className='input'>
               <input
                 type='password'
