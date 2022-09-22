@@ -7,6 +7,7 @@ import CreateComment from "../Comments/CreateComment"
 import PostOwner from "./PostOwner"
 import Likes from "../Likes/Likes"
 import './Posts.css'
+import SuggestedUsers from "../User/SuggestedUsers"
 
 function AllPosts(){
     const dispatch = useDispatch()
@@ -55,6 +56,7 @@ function AllPosts(){
                     </div>
                 </div>
             ))}
+            <SuggestedUsers />
         </div>
     )
 }

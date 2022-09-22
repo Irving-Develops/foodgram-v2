@@ -10,6 +10,7 @@ import AllPosts from './components/Posts/AllPosts';
 import User from './components/User/User'
 import Search from './components/Search/search';
 import Chatrooms from './components/Chat/AllChatrooms';
+import SuggestedUsers from './components/User/SuggestedUsers';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
