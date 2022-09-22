@@ -19,10 +19,13 @@ function User() {
   const allUsers = useSelector(state => state.users)
   // const user = Object.values(useSelector(state => state.users))[0]
   const posts = useSelector(state => state.posts)
-  const user = Object.values(allUsers).filter(user => user.id === parseInt(userId))[0]
+  let user = Object.values(allUsers).filter(user => user.id === parseInt(userId))[0]
+  if(userId == sessionUser.id) {
+    user = sessionUser
+  }
   // const following = Object.values(allUsers).filter(otherUsers => otherUsers.followers.includes(user.id)).length
 
-
+  console.log(sessionUser.id, userId)
   console.log(user, "user")
   let myPosts;
   if(posts){

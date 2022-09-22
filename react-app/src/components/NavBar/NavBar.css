@@ -34,7 +34,7 @@
 #navlinks img{
     cursor: pointer;
     width: 24px;
-    margin-bottom: 3px;
+    /* margin-bottom: 3px; */
 }
 
 #navlinks svg {
@@ -76,8 +76,4 @@ svg{
 
 #navlinks ul {
     display: flex;
-}
-
-#navlinks img {
-    width: 26px;
 }

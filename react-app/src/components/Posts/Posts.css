@@ -2,7 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
+    margin: 100px 20px 100px auto;
+    width: 32.5%;
+    
 }
 
 .post-wrapper {
@@ -11,7 +13,8 @@
     overflow: hidden;
     background-color: white;
     margin-bottom: 50px;
-    width: 32.5%;
+    width: 100%;
+
 }
 /* .post{
     height: 50%;
@@ -91,4 +94,13 @@
     display: flex;
     margin: 12px;
     gap: 12px;
+}
+
+#suggested-user-container {
+    margin: 100px 0;
+    width: 40%;
+}
+
+#homepage-container {
+    display: flex;
 }

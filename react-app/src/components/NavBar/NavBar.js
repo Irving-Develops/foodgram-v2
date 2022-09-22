@@ -6,10 +6,12 @@ import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
 import CreatePostModal from '../Modals/CreatePostModal';
 import Search from '../Search/search';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
 
   const location = useLocation()
+  const sessionUser = useSelector(state => state.session.user)
 
   const [home, setHome] = useState(false)
   // const [explore, setExplore] = useState(true)
@@ -78,6 +80,10 @@ const NavBar = () => {
                 {createModal && (
                   <CreatePostModal setCreateModal={setCreateModal}/>
                 )}
+                <NavLink to={`/users/${sessionUser.id}`} >
+                  <img src={sessionUser.profile_pic} />
+                </NavLink>
+
                 <LogoutButton />
 
             {/* <ul>

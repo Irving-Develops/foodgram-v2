@@ -11,7 +11,8 @@ user_routes = Blueprint('users', __name__)
 @user_routes.route('', methods=['GET'])
 @login_required
 def users():
-    users = User.query.all()
+    users = User.query.filter(User.id != current_user.id)
+    print(users, "users \n \n")
     return {'users': [user.to_dict() for user in users]}
 
 

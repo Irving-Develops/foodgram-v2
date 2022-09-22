@@ -38,7 +38,10 @@ function App() {
         </Route>
         <ProtectedRoute path='/' exact={true} >
           <NavBar />
-          <AllPosts />
+          <div id="homepage-container">
+            <AllPosts />
+            <SuggestedUsers />
+          </div>
         </ProtectedRoute>
         {/* <ProtectedRoute path='/posts' exact={true} >
           <NavBar />

@@ -56,7 +56,6 @@ function AllPosts(){
                     </div>
                 </div>
             ))}
-            <SuggestedUsers />
         </div>
     )
 }
