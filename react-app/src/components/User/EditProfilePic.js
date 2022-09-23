@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux"
 import { useState } from "react"
-import { editUserThunk } from "../../store/users"
+import { editUserThunk } from "../../store/session"
 
 
-export default function EditProfile({user, setEditModal}) {
+export default function EditProfile({user, setEditModal, setUpdate}) {
   const dispatch = useDispatch()
   const [profile_pic, setProfilePic] = useState()
 
@@ -26,6 +26,7 @@ export default function EditProfile({user, setEditModal}) {
         }
 
        let edit =  await dispatch(editUserThunk(editedUser))
+        setUpdate(false)
         setEditModal(false)
     }
 

@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import {useDispatch} from 'react-redux'
+import { useHistory } from "react-router-dom";
 import { addPostThunk } from "../../store/posts";
 
 
 function CreatePost({setCreateModal}) {
     const dispatch = useDispatch()
-
+    const history = useHistory()
     const [img_url, setImgUrl] = useState(null)
     const [caption, setCaption] = useState('')
     const [charCount, setCharCount] = useState(0)
@@ -34,9 +35,11 @@ function CreatePost({setCreateModal}) {
         }
         if (Date.now() - lastClicked < 4000) return;
         lastClicked = Date.now()
-        await dispatch(addPostThunk(post))
+        let createdPost = await dispatch(addPostThunk(post))
 
-
+        // if(createdPost) {
+            history.push('/')
+        // } 
         setCreateModal(false)
         setCharCount(0)
         setIsDisabled(true)
