@@ -7,7 +7,7 @@ export default function EditProfile({user, setEditModal}) {
   const dispatch = useDispatch()
   const [profile_pic, setProfilePic] = useState()
 
-
+  console.log(user, "user in edit profile")
     const updateImgUrl = (e) => {
         const img = e.target.files[0]
         setProfilePic(img)
@@ -15,6 +15,7 @@ export default function EditProfile({user, setEditModal}) {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
+        console.log(user, "user in ediit")
       // if(user) {
         const editedUser = {
           id: user.id,

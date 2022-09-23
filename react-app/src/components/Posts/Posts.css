@@ -68,9 +68,14 @@
 }
 
 #owner {
+    margin-right: 8px;
     text-decoration: none;
     color: var(--text-color);
     font-weight: bold;
+}
+
+#owner:hover span {
+    cursor: pointer;
 }
 
 /* Buttons */

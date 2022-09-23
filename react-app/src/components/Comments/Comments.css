@@ -27,21 +27,21 @@
 
 #comment-text {
     font-size: 14px;
-    margin-bottom: 15px;
-    padding-right: 15px;
-    word-break: break-all;
+    /* margin-bottom: 15px; */
+    /* padding-right: 15px; */
+    word-break: break-word;
 }
-#main-line a {
+/* #main-line a {
     text-decoration: none;
     font-weight: bold;
     color: var(--text-color);
-    margin-right: 10px;
-}
+    margin-right: 8px;
+} */
 
-#main-line span:first-child {
+/* #main-line span:first-child {
     margin-right: 10px;
 
-}
+} */
 
 /* #main-line div:first-of-type{
     margin-top: 60px;

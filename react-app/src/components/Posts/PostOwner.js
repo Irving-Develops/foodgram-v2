@@ -15,8 +15,9 @@ function PostOwner({post}) {
                 <img src={post.owner.profile_pic ? `${post.owner.profile_pic}` : "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"} alt={post.owner.username}/>
             </div>
             <div className="username">
-                <NavLink to={`/users/${post.owner.id}`}>{post.owner.username}</NavLink>
-                {/* <span id="owner">{post.owner.username}</span> */}
+                <NavLink to={`/users/${post.owner.id}`}>
+                    <span id="owner">{post.owner.username}</span>
+                </NavLink>
             </div>
             {sessionUser === post.owner.id && !showButtons &&(
                 <div className='drop-down'>
