@@ -63,7 +63,9 @@ const NavBar = () => {
     <div id="navbar-container">
       <div id="navbar">
         <div id="logo" >
-          <h2>Foodgram</h2>
+          <NavLink style={{"textDecoration": "none"}}to='/'>
+            <h2>Foodgram</h2>
+          </NavLink>
         </div>
         <Search />
         {/* <div > */}
