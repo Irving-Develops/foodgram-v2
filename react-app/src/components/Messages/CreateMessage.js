@@ -113,34 +113,41 @@ export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
 
 
 
-    if(!messageObj || !chatroomUser || !messagesEndRef || !chatrooms || !upToDate) return "loading";
+    if(!messageObj || !chatroomUser || !messagesEndRef || !upToDate) 
+    return (
+        <div className={classes.noMsg}>
+            <svg aria-label="Direct" class="_ab6-" color="#262626" fill="#262626" height="96" role="img" viewBox="0 0 96 96" width="96"><circle cx="48" cy="48" fill="none" r="47" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></circle><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="69.286" x2="41.447" y1="33.21" y2="48.804"></line><polygon fill="none" points="47.254 73.123 71.376 31.998 24.546 32.002 41.448 48.805 47.254 73.123" stroke="currentColor" strokeLinejoin="round" strokeWidth="2"></polygon></svg>
+            <h2>Your Messages</h2>
+            <p>Send private photos and messages to a friend or group.</p>
+        </div>
+    )
     return (
         <div className={classes.chatContainer}>
-                <div className={classes.otherUsername}>
-                    <img src={chatroomUser.profile_pic} alt={chatroomUser.username}/>
-                    <p>{chatroomUser.username}</p>
-                </div>
-                <div className={classes.messageContainer}>
-                {messages.length > 0 && messages.map((message, ind) => (
-                <div key={ind} className={classes.messageWrapper}>
-                    {message.owner_id === user.id  ?
-                    <span className={classes.messageOwner}>{message.message}</span>
-                    :
-                    <span className={classes.otherUser}>{message.message}</span>
+                    <div className={classes.otherUsername}>
+                        <img src={chatroomUser?.profile_pic} alt={chatroomUser?.username}/>
+                        <p>{chatroomUser?.username}</p>
+                    </div>
+                    <div className={classes.messageContainer}>
+                    {messages.length > 0 && messages.map((message, ind) => (
+                    <div key={ind} className={classes.messageWrapper}>
+                        {message.owner_id === user.id  ?
+                        <span className={classes.messageOwner}>{message.message}</span>
+                        :
+                        <span className={classes.otherUser}>{message.message}</span>
 
-                }
-                </div>
-                ))}
-                <div  ref={messagesEndRef} />
-                </div>
-                <form onSubmit={sendChat} className={classes.createMessage}>
-                    <input
-                        value={message}
-                        onChange={updateMessage}
-                        placeholder="Message..."
-                    />
-                    <button type="submit">Send</button>
-                </form>
+                    }
+                    </div>
+                    ))}
+                    <div  ref={messagesEndRef} />
+                    </div>
+                    <form onSubmit={sendChat} className={classes.createMessage}>
+                        <input
+                            value={message}
+                            onChange={updateMessage}
+                            placeholder="Message..."
+                        />
+                        <button type="submit">Send</button>
+                    </form>
         </div>
     )
 }
