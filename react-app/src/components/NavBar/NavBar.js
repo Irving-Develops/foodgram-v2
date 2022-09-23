@@ -1,17 +1,18 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
 import CreatePostModal from '../Modals/CreatePostModal';
 import Search from '../Search/search';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsersThunk } from '../../store/users';
 
 const NavBar = () => {
 
   const location = useLocation()
-
+  const dispatch = useDispatch()
   const [home, setHome] = useState(false)
   // const [explore, setExplore] = useState(true)
   // const [likes, setLikes] = useState(true)
@@ -19,6 +20,9 @@ const NavBar = () => {
   const [createModal, setCreateModal] = useState(false)
   // const [path, setPath] = useState(location.pathname)
   const sessionUser = useSelector(state => state.session.user)
+  const allUsers = useSelector(state => state.users)
+  const user = Object.values(allUsers).filter(user => user.id === sessionUser.id)[0]
+  console.log(user, "all")
   
   // const homeClick = () => {
   //   if(location.pathname !== '/'){
@@ -29,6 +33,10 @@ const NavBar = () => {
   //       setAdd(true)
   //     }
   //   }
+
+  useEffect(() => {
+    dispatch(getUsersThunk())
+  }, [dispatch])
     
   // }
   // const exploreClick = () => {
@@ -82,7 +90,7 @@ const NavBar = () => {
                   <CreatePostModal setCreateModal={setCreateModal}/>
                 )}
                 <NavLink to={`/users/${sessionUser.id}`}>
-                  <img style={{"borderRadius": "100%"}}src={sessionUser.profile_pic} alt='' />
+                  <img style={{"borderRadius": "100%", "height": "26px", "objectFit": "cover"}}src={user?.profile_pic} alt='' />
                 </NavLink>
                 <LogoutButton />
 

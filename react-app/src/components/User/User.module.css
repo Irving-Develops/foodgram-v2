@@ -145,3 +145,13 @@
 .detailsWrapper {
     flex-grow: 1;
 }
+
+.editButton {
+    position: relative;
+    top: -200px;
+    right: -170px;   
+    color: var(--blue-button);
+    font-weight: bold;
+    border: none;
+    background-color: white;
+}

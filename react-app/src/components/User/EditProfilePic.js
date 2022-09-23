@@ -36,7 +36,7 @@ export default function EditProfile({user, setEditModal}) {
                 accept="image/*"
                 onChange={updateImgUrl}
                 />
-            <button>Update Image</button>
+            <button className={classes.editButton}>Done</button>
         </form>
     )
 }
