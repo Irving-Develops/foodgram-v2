@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import TimeSince from '../../TimeSince';
 import EditCommentModal from '../Modals/EditCommentModal';
 
@@ -8,7 +9,6 @@ function CommentOwner({comment, showPic}) {
     const sessionUser = useSelector(state => state.session.user.id)
     const [showButtons, setShowButtons] = useState(false)
     // let date = comment.created_at.getTime()
-
     return (
         <div className="comment-container" >
             <div id='main-line'>
@@ -18,8 +18,8 @@ function CommentOwner({comment, showPic}) {
                 </div>
                 )}
                 <div id='comment-text'>
-                    {/* <NavLink to={`/users/${comment.owner.id}`}>{comment.owner.username}</NavLink> */}
-                    <span id="owner">{comment.owner.username}</span>
+                    <NavLink to={`/users/${comment.owner.id}`}>{comment.owner.username}</NavLink>
+                    {/* <span id="owner">{comment.owner.username}</span> */}
                     <span>{comment.comment_text}</span>
                     <TimeSince date={comment.created_at} />
                 </div>

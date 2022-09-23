@@ -40,7 +40,7 @@ function AllPosts(){
                     </div>
                     {post.caption ?
                     <div className="caption-container">
-                        <NavLink to={`/user/${post.user_id}`} id='owner'>{post.owner.username}</NavLink><span id="caption">{post.caption}</span>
+                        <NavLink to={`/users/${post.user_id}`} id='owner'>{post.owner.username}</NavLink><span id="caption">{post.caption}</span>
                         {/* <span id="owner">{post.owner.username}</span><span id="caption">{post.caption}</span> */}
                     </div>
                     :

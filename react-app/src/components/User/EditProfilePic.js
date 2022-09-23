@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 import { editUserThunk } from "../../store/users"
+import classes from './User.module.css'
 
 
 export default function EditProfile({user, setEditModal}) {

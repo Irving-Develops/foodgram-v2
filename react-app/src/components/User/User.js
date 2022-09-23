@@ -13,8 +13,6 @@ function User() {
   const dispatch = useDispatch()
   const { userId }  = useParams();
   const [showEditModal, setEditModal] = useState(false)
-  const location = useLocation()
-  const [showCommentModal2, setCommentModal2] = useState(false)
   const sessionUser = useSelector(state => state.session.user)
   const allUsers = useSelector(state => state.users)
   // const user = Object.values(useSelector(state => state.users))[0]
@@ -72,7 +70,7 @@ function User() {
             <p><span>{user.following.length} </span>following</p>
           </div>
 
-          {showEditModal && sessionUser.id === userId &&  (
+          {showEditModal && sessionUser.id == userId &&  (
             <Modal className={classes.modalContainer} onClose={() => {
               setEditModal(false)
             }}>

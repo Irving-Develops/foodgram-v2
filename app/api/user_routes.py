@@ -12,14 +12,15 @@ user_routes = Blueprint('users', __name__)
 @login_required
 def users():
     users = User.query.all()
+    print(users, "users ====> \n \n")
     return {'users': [user.to_dict() for user in users]}
 
 
-@user_routes.route('/<int:id>', methods=['GET'])
-@login_required
-def user(id):
-    user = User.query.get(id)
-    return user.to_dict()
+# @user_routes.route('/<int:id>', methods=['GET'])
+# @login_required
+# def user(id):
+#     user = User.query.get(id)
+#     return user.to_dict()
 
 @user_routes.route("/<int:id>", methods=['PUT'])
 @login_required
