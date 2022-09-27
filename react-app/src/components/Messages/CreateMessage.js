@@ -36,10 +36,7 @@ export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
         })
         // when component unmounts, disconnect
         return (() => {
-            messages.forEach(message => {
-                console.log("dispatching")
-                dispatch(addMessageThunk(message))
-            } )
+            dispatchMessages(messages)
             socket.disconnect()
             console.log("disconnected")
         })
@@ -49,17 +46,26 @@ export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
         setChatInput(e.target.value)
     };
 
-    const sendChat = (e) => {
+    const sendChat = async(e) => {
         e.preventDefault()
-        socket.emit("chat", { owner_id: user.id, messages: chatInput, chatroomId: chatroomId });
+        let newMessage = { owner_id: user.id, message: chatInput, chatroomId: chatroomId }
+        await dispatch(addMessageThunk(newMessage))
+        socket.emit("chat", newMessage);
         setChatInput("")
+    }
+
+    const dispatchMessages = (messages) => {
+        messages.forEach(message => {
+            dispatch(addMessageThunk(message))
+            console.log("firing didspatch")
+        })
     }
 
     return (user && (
         <div>
             <div>
                 {messages.map((message, ind) => (
-                    <div key={ind}>{`${message.owner_id}: ${message.messages}`}</div>
+                    <div key={ind}>{`${message.owner_id}: ${message.message}`}</div>
                 ))}
             </div>
             <div>

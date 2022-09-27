@@ -30,7 +30,8 @@ def add_message():
         db.session.add(message)
         db.session.commit()
         return message.to_dict()
-    return { 'errors' : validation_errors_to_error_messages(form.errors) }, 400
+    # return { 'errors' : validation_errors_to_error_messages(form.errors) }, 400
+    return "not working"
     
 
 @message_routes.route('/<int:id>', methods=['DELETE'])
