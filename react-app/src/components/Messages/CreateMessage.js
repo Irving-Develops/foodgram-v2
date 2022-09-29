@@ -19,7 +19,7 @@ export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
     const user = useSelector(state => state.session.user)
     const messageState = useSelector(state => state.messages)
     let chatMessages = Object.values(messageState)
-    // console.log(socket, "socket")
+    console.log(socket, "socket")
     // console.log(messageState, messages, "messages")
 
     // useEffect(() => {
@@ -67,6 +67,7 @@ export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
             console.log("posting messages", message)
         })
         socket.disconnect()
+        console.log(socket, "socket in dispatch")
     }
 
     return (user && (

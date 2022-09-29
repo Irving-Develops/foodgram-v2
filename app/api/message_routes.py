@@ -16,20 +16,26 @@ def get_messages(id):
 
 @message_routes.route("", methods=["POST"])
 @login_required
-def add_message():
-    form = MessageForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data['chatroom_id'], "insde message route \n \n")
-    if form.validate_on_submit():
-        message = Message(
-            message=form.data['message'],
-            chatroom_id=form.data['chatroom_id'],
-            owner_id=form.data['owner_id'],
-        )
+def add_message(msg):
+    print(msg, "message in route \n \n")
+    # form = MessageForm()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    # print(form.data['chatroom_id'], "insde message route \n \n")
+    # if form.validate_on_submit():
+        # new_msg = Message(
+        #     message=msg['message'],
+        #     chatroom_id=msg['chatroom_id'],
+        #     message=msg['owner_id']
+        # )
+        # message = Message(
+        #     message=form.data['message'],
+        #     chatroom_id=form.data['chatroom_id'],
+        #     owner_id=form.data['owner_id'],
+        # )
 
-        db.session.add(message)
-        db.session.commit()
-        return message.to_dict()
+        # db.session.add(new_msg)
+        # db.session.commit()
+        # return message.to_dict()
     # return { 'errors' : validation_errors_to_error_messages(form.errors) }, 400
     # return "not working"
     
