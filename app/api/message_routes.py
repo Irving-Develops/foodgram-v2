@@ -19,7 +19,7 @@ def get_messages(id):
 def add_message():
     form = MessageForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data['chatroom_id'], "\n \n")
+    print(form.data['chatroom_id'], "insde message route \n \n")
     if form.validate_on_submit():
         message = Message(
             message=form.data['message'],
@@ -31,7 +31,7 @@ def add_message():
         db.session.commit()
         return message.to_dict()
     # return { 'errors' : validation_errors_to_error_messages(form.errors) }, 400
-    return "not working"
+    # return "not working"
     
 
 @message_routes.route('/<int:id>', methods=['DELETE'])

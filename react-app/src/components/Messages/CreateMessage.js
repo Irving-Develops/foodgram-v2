@@ -19,8 +19,14 @@ export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
     const user = useSelector(state => state.session.user)
     const messageState = useSelector(state => state.messages)
     let chatMessages = Object.values(messageState)
-    console.log(chatMessages, "chat")
-    console.log(messageState, messages, "messages")
+    // console.log(socket, "socket")
+    // console.log(messageState, messages, "messages")
+
+    // useEffect(() => {
+    //     if(!socket.connected) {
+    //         console.log(messages, "messages when disconnected")
+    //     }
+    // },[socket.connected])
 
     useEffect(() => {
         dispatch(getMessagesThunk(chatroomId))
@@ -36,9 +42,9 @@ export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
         })
         // when component unmounts, disconnect
         return (() => {
+            console.log(messages, "messages in return")
             dispatchMessages(messages)
-            socket.disconnect()
-            console.log("disconnected")
+            // socket.disconnect()
         })
     }, [])
 
@@ -48,17 +54,19 @@ export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
 
     const sendChat = async(e) => {
         e.preventDefault()
-        let newMessage = { owner_id: user.id, message: chatInput, chatroomId: chatroomId }
-        await dispatch(addMessageThunk(newMessage))
+        let newMessage = { owner_id: user.id, message: chatInput, chatroom_id: chatroomId }
+        // await dispatch(addMessageThunk(newMessage))
         socket.emit("chat", newMessage);
         setChatInput("")
     }
 
     const dispatchMessages = (messages) => {
-        messages.forEach(message => {
-            dispatch(addMessageThunk(message))
-            console.log("firing didspatch")
+        console.log("messages in didspatch", messages)
+        messages.forEach(async(message) => {
+            await dispatch(addMessageThunk(message))
+            console.log("posting messages", message)
         })
+        socket.disconnect()
     }
 
     return (user && (
