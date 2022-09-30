@@ -14,7 +14,8 @@ else:
     origins = "*"
 
 # initialize your socket instance
-socketio = SocketIO(cors_allowed_origins=origins)
+# socketio = SocketIO(cors_allowed_origins=origins)
+socketio = SocketIO(cors_allowed_origins='*', logger=True, engineio_logger=True)
 
 current_messages = []
 # handle chat messages
@@ -22,24 +23,23 @@ current_messages = []
 def handle_chat(data):
     current_messages.append(data)
     emit("chat", data, broadcast=True)
-    print(current_messages, "current messages \n")
-    pass
-    # return
 
-@socketio.on("disconnect")
-def handle_disconnet():
-    for msg in current_messages:
-        print(msg, "message in socket disconnect \n")
-        add_message(msg)
-        # new_msg = Message(
-        #     message=msg.message,
-        #     chatroom_id=msg.chatroom_id,
-        #     message=msg.owner_id
-        # )
-        # print(new_msg, "new message in disconnect \n")
-        # db.session.add(new_msg)
-        # db.session.commit()
-    pass
+
+
+# @socketio.on("disconnect")
+# def handle_disconnet():
+#     for msg in current_messages:
+#         print(msg, "message in socket disconnect \n")
+#         add_message(msg)
+#         # new_msg = Message(
+#         #     message=msg.message,
+#         #     chatroom_id=msg.chatroom_id,
+#         #     message=msg.owner_id
+#         # )
+#         # print(new_msg, "new message in disconnect \n")
+#         # db.session.add(new_msg)
+#         # db.session.commit()
+#     pass
 
 
 print(current_messages, "current messages")

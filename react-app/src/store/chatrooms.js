@@ -20,7 +20,7 @@ export const getChatroomsThunk = () => async(dispatch) => {
     }
 }
 export const addChatroomThunk = (data) => async(dispatch) => {
-    console.log(data, "data; in add")
+    // console.log(data, "data; in add")
     const res = await fetch('/api/chatrooms', {
         method: 'POST',
         headers: {

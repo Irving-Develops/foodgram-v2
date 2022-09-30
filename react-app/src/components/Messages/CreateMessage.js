@@ -8,18 +8,25 @@ import { getChatroomsThunk } from "../../store/chatrooms";
 // import {deleteMessageThunk } from "../../store/messages";
 
 import DeleteMessage from "./DeleteMessage";
+import { useHistory } from "react-router-dom";
 
 
 let socket;
 
-export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
+export default function CreateMessage({chatroomId}) {
     const dispatch = useDispatch()
+    const history = useHistory()
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
     const user = useSelector(state => state.session.user)
     const messageState = useSelector(state => state.messages)
-    let chatMessages = Object.values(messageState)
-    console.log(socket, "socket")
+    const currentChatroom = Object.values(useSelector(state => state.chatrooms)).filter(chatroom => chatroom.id == chatroomId)
+    const [originalMessages, setOriginalMessages] = useState(currentChatroom[0]?.messages)
+    // let chatMessages = Object.values(messageState)
+    console.log(currentChatroom.message, "chatrooms")
+
+    // const copy = [...chatMessages]
+    const [socketToggle, setSocketToggle] = useState(false)
     // console.log(messageState, messages, "messages")
 
     // useEffect(() => {
@@ -27,6 +34,17 @@ export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
     //         console.log(messages, "messages when disconnected")
     //     }
     // },[socket.connected])
+
+
+    console.log(originalMessages, "msgs")
+
+    useEffect(() => {
+        console.log("============= firing =============")
+        dispatch(getMessagesThunk(chatroomId))
+        setOriginalMessages(currentChatroom[0]?.messages)
+        setMessages([])
+    }, [history.location.pathname])
+
 
     useEffect(() => {
         dispatch(getMessagesThunk(chatroomId))
@@ -38,13 +56,14 @@ export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
         socket = io();
 
         socket.on("chat", (chat) => {
+            setSocketToggle(true)
             setMessages(messages => [...messages, chat])
         })
         // when component unmounts, disconnect
         return (() => {
             console.log(messages, "messages in return")
-            dispatchMessages(messages)
-            // socket.disconnect()
+            // dispatchMessages(messages)
+            socket.disconnect()
         })
     }, [])
 
@@ -55,30 +74,22 @@ export default function CreateMessage({chatroomId, setUpToDate, upToDate}) {
     const sendChat = async(e) => {
         e.preventDefault()
         let newMessage = { owner_id: user.id, message: chatInput, chatroom_id: chatroomId }
-        // await dispatch(addMessageThunk(newMessage))
+        await dispatch(addMessageThunk(newMessage))
         socket.emit("chat", newMessage);
         setChatInput("")
     }
 
-    const dispatchMessages = (messages) => {
-        console.log("messages in didspatch", messages)
-        messages.forEach(async(message) => {
-            await dispatch(addMessageThunk(message))
-            console.log("posting messages", message)
-        })
-        socket.disconnect()
-        console.log(socket, "socket in dispatch")
-    }
 
+    if(!originalMessages) return null
     return (user && (
         <div>
             <div>
-                {messages.map((message, ind) => (
+                {messages?.map((message, ind) => (
                     <div key={ind}>{`${message.owner_id}: ${message.message}`}</div>
                 ))}
             </div>
             <div>
-                {chatMessages.map((message, ind) => (
+                {originalMessages?.map((message, ind) => (
                     <div key={ind}>{`${message.owner}: ${message.message}`}</div>
                 ))}
             </div>
