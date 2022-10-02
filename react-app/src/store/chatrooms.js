@@ -1,9 +1,16 @@
 const GET_CHATROOMS = 'chatrooms/GET_CHATROOMS'
+const GET_CHATROOM = 'chatroom/GET_CHATROOM'
 const ADD_CHATROOM = 'chatroom/ADD_CHATROOM'
+
 
 export const getChatrooms = (chatrooms) => ({
     type: GET_CHATROOMS,
     chatrooms
+})
+
+export const getChatroom = (chatroom) => ({
+    type: GET_CHATROOM,
+    chatroom
 })
 
 export const addChatroom = (chatroom) => ({
@@ -19,6 +26,17 @@ export const getChatroomsThunk = () => async(dispatch) => {
         dispatch(getChatrooms(data.chatrooms))
     }
 }
+
+export const getChatroomThunk = (chatroomId) => async(dispatch) => {
+    let res = await fetch(`/api/chatrooms/${chatroomId}`)
+
+    if(res.ok) {
+        const data = await res.json()
+        console.log(data, "data in thunk")
+        dispatch(getChatroom(data))
+    }
+}
+
 export const addChatroomThunk = (data) => async(dispatch) => {
     // console.log(data, "data; in add")
     const res = await fetch('/api/chatrooms', {
@@ -44,6 +62,10 @@ export default function commentReducer(state = {}, action){
     switch (action.type){
         case GET_CHATROOMS:
             action.chatrooms.forEach((chatroom) => newState[chatroom.id] = chatroom);
+        return newState
+        case GET_CHATROOM:
+            console.log(action.chatroom, "in reducer chatroom")
+            // newState[action.chatroom.id] = action.chatroom
         return newState
         case ADD_CHATROOM:
             newState[action.chatroom.id] = action.chatroom;

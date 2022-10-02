@@ -4,7 +4,7 @@ import { addMessageThunk, deleteMessageThunk } from "../../store/messages";
 import { io } from 'socket.io-client';
 import classes from './Message.module.css'
 import {getMessagesThunk} from '../../store/messages'
-import { getChatroomsThunk } from "../../store/chatrooms";
+import { getChatroomThunk } from "../../store/chatrooms";
 // import {deleteMessageThunk } from "../../store/messages";
 
 import DeleteMessage from "./DeleteMessage";
@@ -20,11 +20,12 @@ export default function CreateMessage({chatroomId}) {
     const [messages, setMessages] = useState([]);
     const user = useSelector(state => state.session.user)
     const messageState = useSelector(state => state.messages)
+    // const chatroom = useSelector(state => state.chatrooms)
     const currentChatroom = Object.values(useSelector(state => state.chatrooms)).filter(chatroom => chatroom.id == chatroomId)
     const [originalMessages, setOriginalMessages] = useState(currentChatroom[0]?.messages)
     // let chatMessages = Object.values(messageState)
-    console.log(currentChatroom.message, "chatrooms")
-
+    // console.log(currentChatroom.message, "chatrooms")
+    // console.log(chatroomId, "chat id")
     // const copy = [...chatMessages]
     const [socketToggle, setSocketToggle] = useState(false)
     // console.log(messageState, messages, "messages")
@@ -34,20 +35,29 @@ export default function CreateMessage({chatroomId}) {
     //         console.log(messages, "messages when disconnected")
     //     }
     // },[socket.connected])
+    // useEffect(() => {
+    //     dispatch(getChatroomThunk(chatroomId))
+    //     console.log("dispatching")
+    // }, [dispatch])
 
+    // if(!originalMessages) {
+    //     setOriginalMessages(currentChatroom[0]?.messages)
+    // }
 
-    console.log(originalMessages, "msgs")
+    console.log(originalMessages,  "msgs")
+    console.log(currentChatroom[0]?.messages, "current chatroom messages")
 
     useEffect(() => {
         console.log("============= firing =============")
         dispatch(getMessagesThunk(chatroomId))
         setOriginalMessages(currentChatroom[0]?.messages)
         setMessages([])
-    }, [history.location.pathname])
+    }, [history.location.pathname, currentChatroom[0]?.messages])
 
 
     useEffect(() => {
         dispatch(getMessagesThunk(chatroomId))
+        setOriginalMessages(currentChatroom[0]?.messages)
     }, [dispatch])
 
     useEffect(() => {
@@ -80,7 +90,7 @@ export default function CreateMessage({chatroomId}) {
     }
 
 
-    if(!originalMessages) return null
+    if(!originalMessages || !currentChatroom[0].messages) return null
     return (user && (
         <div>
             <div>
@@ -89,7 +99,7 @@ export default function CreateMessage({chatroomId}) {
                 ))}
             </div>
             <div>
-                {originalMessages?.map((message, ind) => (
+                {originalMessages.map((message, ind) => (
                     <div key={ind}>{`${message.owner}: ${message.message}`}</div>
                 ))}
             </div>
