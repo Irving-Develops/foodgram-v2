@@ -20,11 +20,9 @@ export const deleteMessage = (message) => ({
 
 export const getMessagesThunk = (chatroomId) => async(dispatch) => {
     const res = await fetch(`/api/messages/${chatroomId}`)
-    console.log(chatroomId, "in thunk")
 
     if(res.ok) {
         const data = await res.json()
-        console.log(data, "in res")
         dispatch(getMessages(data.message))
     }else {
       const err = await res.json();
@@ -33,7 +31,6 @@ export const getMessagesThunk = (chatroomId) => async(dispatch) => {
 }
 
 export const addMessageThunk = (data) => async(dispatch) => {
-    console.log(data, "data; in add")
     const res = await fetch('/api/messages', {
         method: 'POST',
         headers: {

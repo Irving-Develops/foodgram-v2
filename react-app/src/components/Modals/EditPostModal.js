@@ -14,9 +14,7 @@ function EditPostModal({post, setShowButtons}) {
         <div id='post-buttons'>
             <button className='delete' onClick={() => {
                 setDeleteModal(true) 
-                // setShowButtons(false)
             }}>Delete</button>
-            {/* <DeletePost post={post}/> */}
 
             {showDeleteModal && (
                 <Modal onClose={() => {

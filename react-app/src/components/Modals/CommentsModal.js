@@ -1,23 +1,10 @@
-// import React, {useEffect} from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
 import PostUser from '../Posts/PostOwner'
 import CommentOwner from '../Comments/CommentOwner'
 import CreateComment from '../Comments/CreateComment'
 import './ModalCss/CommentsModal.css'
-// import {getCommentsOfPostsThunk} from '../../store/comments'
 
 function CommentsModal({commentsArr, post}) {
-    // const dispatch = useDispatch()
-    // const comments = useSelector(state => state.comments)
-    // let commentsArr;
 
-    // if(comments){
-    //     commentsArr = Object.values(comments).filter(comment => comment.post_id === post.id)
-    // }
-
-    // useEffect(() => {
-    //     dispatch(getCommentsOfPostsThunk(post.id))
-    // }, [dispatch])
     
         return (
             <div className='container'>

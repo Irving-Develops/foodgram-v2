@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import {deleteMessageThunk } from "../../store/messages";
 
@@ -14,7 +14,7 @@ export default function DeleteMessage({message, socket, setMessages, chatroomId}
 
 
     const handleDelete = async() => {
-        let deletedMessage = await dispatch(deleteMessageThunk(message))
+        await dispatch(deleteMessageThunk(message))
     }
 
     return (

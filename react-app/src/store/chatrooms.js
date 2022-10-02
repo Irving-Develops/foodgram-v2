@@ -63,10 +63,10 @@ export default function commentReducer(state = {}, action){
         case GET_CHATROOMS:
             action.chatrooms.forEach((chatroom) => newState[chatroom.id] = chatroom);
         return newState
-        case GET_CHATROOM:
-            console.log(action.chatroom, "in reducer chatroom")
+        // case GET_CHATROOM:
+            // console.log(action.chatroom, "in reducer chatroom")
             // newState[action.chatroom.id] = action.chatroom
-        return newState
+        // return newState
         case ADD_CHATROOM:
             newState[action.chatroom.id] = action.chatroom;
         return newState;

@@ -5,7 +5,6 @@ import { getChatroomsThunk } from "../../store/chatrooms"
 import { getUsersThunk } from "../../store/users"
 import TimeSince from "../../TimeSince"
 import CreateMessage from "../Messages/CreateMessage"
-import LastMessage from "../Messages/LastMessage"
 import classes from './Chatroom.module.css'
 
 export default function Chatrooms(){
@@ -15,17 +14,11 @@ export default function Chatrooms(){
     const sessionUser = useSelector(state => state.session.user)
     const chatrooms = useSelector(state => state.chatrooms)
     const users = useSelector(state => state.users)
-    const [chatroomId, setChatroomId] = useState(null)
     const [upToDate, setUpToDate] = useState(true)
     const [id, setId] = useState(parseInt(location.pathname.split('/')[2]))
-    // console.log(id, "id")
 
     let myChatrooms;
     let myChatArray;
-
-     
-
-    // console.log(id)
     
 
     if(chatrooms){

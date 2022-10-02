@@ -32,7 +32,6 @@ export const editUserThunk = (user) => async(dispatch) => {
     method: 'PUT',
     body: formData
   })
-  console.log(res, "response")
 
   if(res.ok) {
     const user = await res.json();

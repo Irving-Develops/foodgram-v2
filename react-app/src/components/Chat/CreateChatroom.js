@@ -15,7 +15,6 @@ export default function CreateChatroom({user}) {
         chatroomArr = Object.values(chatrooms).filter(chatroom => (chatroom.creator_id === sessionUser.id || chatroom.receiver_id === sessionUser.id) && (chatroom.receiver_id === user.id || chatroom.creator_id === user.id))
     }
 
-    console.log(chatroomArr, "array")
 
 
     useEffect(() => {
