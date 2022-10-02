@@ -20,7 +20,7 @@ export default function CreateMessage({chatroomId}) {
     const [messages, setMessages] = useState([]);
     const user = useSelector(state => state.session.user)
     const messageState = useSelector(state => state.messages)
-    // const chatroom = useSelector(state => state.chatrooms)
+    const messagesEndRef = useRef(null)
     const currentChatroom = Object.values(useSelector(state => state.chatrooms)).filter(chatroom => chatroom.id == chatroomId)
     const [originalMessages, setOriginalMessages] = useState(currentChatroom[0]?.messages)
     // let chatMessages = Object.values(messageState)
@@ -28,23 +28,17 @@ export default function CreateMessage({chatroomId}) {
     // console.log(chatroomId, "chat id")
     // const copy = [...chatMessages]
     const [socketToggle, setSocketToggle] = useState(false)
-    // console.log(messageState, messages, "messages")
 
-    // useEffect(() => {
-    //     if(!socket.connected) {
-    //         console.log(messages, "messages when disconnected")
-    //     }
-    // },[socket.connected])
-    // useEffect(() => {
-    //     dispatch(getChatroomThunk(chatroomId))
-    //     console.log("dispatching")
-    // }, [dispatch])
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "auto" })
+    }
+    let chatroomUser;
 
-    // if(!originalMessages) {
-    //     setOriginalMessages(currentChatroom[0]?.messages)
-    // }
+    if(chatroomId && currentChatroom) {
+        chatroomUser = currentChatroom[0]?.otherUser
+    }
 
-    console.log(originalMessages,  "msgs")
+    console.log(currentChatroom,  "current chatroom")
     console.log(currentChatroom[0]?.messages, "current chatroom messages")
 
     useEffect(() => {
@@ -52,13 +46,16 @@ export default function CreateMessage({chatroomId}) {
         dispatch(getMessagesThunk(chatroomId))
         setOriginalMessages(currentChatroom[0]?.messages)
         setMessages([])
-    }, [history.location.pathname, currentChatroom[0]?.messages])
+        scrollToBottom()
+    }, [history.location.pathname, currentChatroom[0]?.messages, dispatch])
 
 
-    useEffect(() => {
-        dispatch(getMessagesThunk(chatroomId))
-        setOriginalMessages(currentChatroom[0]?.messages)
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getMessagesThunk(chatroomId))
+    //     setOriginalMessages(currentChatroom[0]?.messages)
+    //     scrollToBottom()
+    // }, [dispatch])
+
 
     useEffect(() => {
         // open socket connection
@@ -85,25 +82,51 @@ export default function CreateMessage({chatroomId}) {
         e.preventDefault()
         let newMessage = { owner_id: user.id, message: chatInput, chatroom_id: chatroomId }
         await dispatch(addMessageThunk(newMessage))
+        scrollToBottom()
         socket.emit("chat", newMessage);
         setChatInput("")
     }
 
-
-    if(!originalMessages || !currentChatroom[0].messages) return null
+    // scrollToBottom()
+    if(!originalMessages || !currentChatroom[0].messages) return (
+        <div className={classes.noMsg}>
+            <svg aria-label="Direct" class="_ab6-" color="#262626" fill="#262626" height="96" role="img" viewBox="0 0 96 96" width="96"><circle cx="48" cy="48" fill="none" r="47" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></circle><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="69.286" x2="41.447" y1="33.21" y2="48.804"></line><polygon fill="none" points="47.254 73.123 71.376 31.998 24.546 32.002 41.448 48.805 47.254 73.123" stroke="currentColor" strokeLinejoin="round" strokeWidth="2"></polygon></svg>
+            <h2>Your Messages</h2>
+            <p>Send private photos and messages to a friend or group.</p>
+        </div>
+    )
     return (user && (
-        <div>
-            <div>
-                {messages?.map((message, ind) => (
-                    <div key={ind}>{`${message.owner_id}: ${message.message}`}</div>
-                ))}
-            </div>
-            <div>
+        <div className={classes.chatContainer}>
+            <div className={classes.otherUsername}>
+                <img src={chatroomUser?.profile_pic} alt={chatroomUser?.username}/>
+                <p>{chatroomUser?.username}</p>
+             </div>
+            <div className={classes.messageContainer}>
                 {originalMessages.map((message, ind) => (
-                    <div key={ind}>{`${message.owner}: ${message.message}`}</div>
+                    <div key={ind} className={classes.messageWrapper}>
+                        {message.owner_id === user.id  ?
+                        <span className={classes.messageOwner}>{message.message}</span>
+                        :
+                        <span className={classes.otherUser}>{message.message}</span>
+
+                    }
+                    </div>
+
+                ))}
+                {messages?.map((message, ind) => (
+                    <div key={ind} className={classes.messageWrapper}>
+                        {message.owner_id === user.id  ?
+                        <span className={classes.messageOwner}>{message.message}</span>
+                        :
+                        <span className={classes.otherUser}>{message.message}</span>
+
+                    }
+                    </div>
+
                 ))}
             </div>
-            <form onSubmit={sendChat}>
+            <div ref={messagesEndRef} ></div>
+            <form onSubmit={sendChat} className={classes.createMessage}>
                 <input
                     value={chatInput}
                     onChange={updateChatInput}
