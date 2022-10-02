@@ -19,7 +19,7 @@ def get_messages(id):
 def add_message():
     form = MessageForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data['chatroom_id'], "\n \n")
+    print(form.data, "form \n \n")
     if form.validate_on_submit():
         message = Message(
             message=form.data['message'],

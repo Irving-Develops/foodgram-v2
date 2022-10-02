@@ -18,14 +18,14 @@ export default function Chatrooms(){
     const [chatroomId, setChatroomId] = useState(null)
     const [upToDate, setUpToDate] = useState(true)
     const [id, setId] = useState(parseInt(location.pathname.split('/')[2]))
-    console.log(id, "id")
+    // console.log(id, "id")
 
     let myChatrooms;
     let myChatArray;
 
      
 
-    console.log(id)
+    // console.log(id)
     
 
     if(chatrooms){
@@ -99,7 +99,7 @@ export default function Chatrooms(){
             // <CreateMessage chatroomId={id[2]} setUpToDate={setUpToDate} upToDate={upToDate} />
             null
             :
-            <CreateMessage chatroomId={id} setUpToDate={setUpToDate} upToDate={upToDate} />
+            <CreateMessage chatroomId={id} />
         }
         </div>
     )

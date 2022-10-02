@@ -12,6 +12,13 @@ def get_chatrooms():
     chatrooms = Chatroom.query.all()
     return {'chatrooms': [chatroom.to_dict() for chatroom in chatrooms]}
 
+@chatroom_routes.route("/<int:id>", methods=['GET'])
+@login_required
+def get_chatroom(id):
+    chatroom = Chatroom.query.get(id)
+    return chatroom.to_dict()
+
+
 @chatroom_routes.route("", methods=['POST'])
 @login_required
 def add_chatrooms():

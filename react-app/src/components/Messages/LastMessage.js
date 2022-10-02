@@ -4,7 +4,7 @@ import {getMessagesThunk} from '../../store/messages'
 
 
 export default function LastMessage({chatroomId}) {
-    console.log(chatroomId)
+    // console.log(chatroomId)
     const dispatch = useDispatch()
     const messageObj = useSelector(state => state.messages)
     const [lastMessage, setLastMessage] = useState("")
@@ -12,7 +12,7 @@ export default function LastMessage({chatroomId}) {
     if(messageObj) {
         arr = Object.values(messageObj)
     }
-    console.log(arr, "Arr")
+    // console.log(arr, "Arr")
     useEffect(() => {
         dispatch(getMessagesThunk(chatroomId))
     }, [dispatch])

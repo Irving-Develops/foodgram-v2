@@ -43,14 +43,14 @@ export const addPostThunk = (post) => async(dispatch) => {
     formData.append('img_url', img_url)
     formData.append('caption', caption)
 
-    console.log(Object.values(formData), "formdata inside thunk")
+    // console.log(Object.values(formData), "formdata inside thunk")
     
     const res = await fetch('/api/posts', {
         method: "POST",
         body: formData
     });
 
-    console.log(res, "body in thunk")
+    // console.log(res, "body in thunk")
     
     if (res.ok) {
         const post = await res.json();
@@ -127,7 +127,7 @@ export const removeLikeThunk = (post) => async(dispatch) => {
 
 
 export default function postReducer(state = {}, action){
-    console.log(state, "in reducer post")
+    // console.log(state, "in reducer post")
     let newState = {...state} 
     switch (action.type){
         case GET_POSTS:
