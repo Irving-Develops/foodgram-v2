@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {useDispatch, useSelector} from 'react-redux'
-import {useLocation, useHistory} from 'react-router-dom'
+import {useLocation, useHistory, useParams} from 'react-router-dom'
 import { getChatroomsThunk } from "../../store/chatrooms"
 import { getUsersThunk } from "../../store/users"
 import TimeSince from "../../TimeSince"
@@ -8,7 +8,9 @@ import CreateMessage from "../Messages/CreateMessage"
 import LastMessage from "../Messages/LastMessage"
 import classes from './Chatroom.module.css'
 
+
 export default function Chatrooms(){
+    // const {id} = useParams()
     const dispatch = useDispatch()
     const location = useLocation()
     const history = useHistory()
