@@ -41,14 +41,14 @@ stages:
     - appname: Build Container and push
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku container:push -a ${{ secrets.HEROKU_APP_appname }} web 
+      run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web 
 
     - appname: Release
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku container:release -a ${{ secrets.HEROKU_APP_appname }} web 
+      run: heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web 
 
     - appname: Run DB Migration
       env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku run -a ${{ secrets.HEROKU_APP_appname }} flask db upgrade
+      run: heroku run -a ${{ secrets.HEROKU_APP_NAME }} flask db upgrade
