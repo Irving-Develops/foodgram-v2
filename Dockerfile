@@ -6,7 +6,7 @@ FROM python:3.9
 # FLASK_APP -> entry point to your flask app
 # FLASK_ENV -> Tell flask to use the production server
 # SQLALCHEMY_ECHO -> Just set it to true
-ENV REACT_APP_BASE_URL=https://foodgramv2.herokuapp.com/
+ENV REACT_APP_BASE_URL=https://foodgram.herokuapp.com/
 ENV FLASK_APP=app
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=true
@@ -25,4 +25,5 @@ RUN pip install -r requirements.txt
 RUN pip install psycopg2
 # Start the flask environment by setting our
 # closing command to gunicorn app:app
-CMD gunicorn --worker-class eventlet -w 1 app:app
+# CMD gunicorn --worker-class eventlet -w 1 app:app
+CMD gunicorn app:app
