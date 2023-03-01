@@ -10,7 +10,6 @@ ENV REACT_APP_BASE_URL=https://foodgram.herokuapp.com/
 ENV FLASK_APP=app
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=true
-RUN cd react-app && npm run build
 
 # Set the directory for upcoming commands to /var/www
 WORKDIR /var/www
