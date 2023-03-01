@@ -62,8 +62,8 @@ export default function CreateMessage({chatroomId}) {
     const sendChat = async(e) => {
         e.preventDefault()
         let newMessage = { owner_id: user.id, message: chatInput, chatroom_id: chatroomId }
-        scrollToBottom()
         await dispatch(addMessageThunk(newMessage))
+        scrollToBottom()
         socket.emit("chat", newMessage);
         setChatInput("")
     }
