@@ -10,6 +10,7 @@ ENV REACT_APP_BASE_URL=https://foodgram.herokuapp.com/
 ENV FLASK_APP=app
 ENV FLASK_ENV=production
 ENV SQLALCHEMY_ECHO=true
+RUN cd react-app && npm run build
 
 # Set the directory for upcoming commands to /var/www
 WORKDIR /var/www
@@ -17,7 +18,6 @@ WORKDIR /var/www
 COPY . .
 # Copy the built react app (it's built for us) from the
 # /react-app/build/ directory into your flasks app/static directory
-RUN cd react-app && npm run build
 COPY /react-app/build/* app/static/
 # Run the next two python install commands with PIP
 # install -r requirements.txt
