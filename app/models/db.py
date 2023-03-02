@@ -3,23 +3,43 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 import datetime
 
+# add import and set variable to access flask environment
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get('SCHEMA')
+
+
+db = SQLAlchemy()
+
+# add function to add a prefix to table names in production environment only
+def add_prefix_for_prod(attr):
+    if environment == "production":
+        return f"{SCHEMA}.{attr}"
+    else:
+        return attr
 
 db = SQLAlchemy()
 
 likes = db.Table(
     "likes",
     db.Model.metadata,
-    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-    db.Column("post_id", db.Integer, db.ForeignKey("posts.id"), primary_key=True),
+    db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True),
+    db.Column("post_id", db.Integer, db.ForeignKey(add_prefix_for_prod("posts.id")), primary_key=True),
 )
+if environment == "production":
+    likes.schema = SCHEMA
 
 followers = db.Table('followers',
-    db.Column('follower_id', db.Integer, db.ForeignKey('users.id')),
-    db.Column('followed_id', db.Integer, db.ForeignKey('users.id'))
+    db.Column('follower_id', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'))),
+    db.Column('followed_id', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 )
+if environment == "production":
+    followers.schema = SCHEMA
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}    
 
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(50), nullable=False)
@@ -90,11 +110,13 @@ class User(db.Model, UserMixin):
 
 class Post(db.Model):
     __tablename__ = "posts"
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}    
 
     id = db.Column(db.Integer, primary_key=True)
     img_url = db.Column(db.String(255))
     caption = db.Column(db.String(255))
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
 
@@ -118,11 +140,13 @@ class Post(db.Model):
 
 class Comment(db.Model):
     __tablename__ = 'comments'
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}    
 
     id = db.Column(db.Integer, primary_key=True)
     comment_text = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
 
@@ -143,10 +167,12 @@ class Comment(db.Model):
 
 class Chatroom(db.Model):
     __tablename__= "chatrooms"
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}    
 
     id = db.Column(db.Integer, primary_key=True)
-    creator_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    receiver_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    creator_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    receiver_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     # Relationships
@@ -165,12 +191,14 @@ class Chatroom(db.Model):
 
 class Message(db.Model):
     __tablename__ = "messages"
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}    
 
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    chatroom_id = db.Column(db.Integer, db.ForeignKey('chatrooms.id'))
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    chatroom_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('chatrooms.id')))
 
     # Relationships
     owner = db.relationship("User", back_populates="messages")
