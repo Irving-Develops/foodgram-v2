@@ -7,6 +7,9 @@ Create Date: 2022-08-24 21:02:36.717830
 """
 from alembic import op
 import sqlalchemy as sa
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
@@ -21,6 +24,9 @@ def upgrade():
     op.add_column('chatrooms', sa.Column('recipient_id', sa.Integer(), nullable=False))
     op.create_foreign_key(None, 'chatrooms', 'users', ['recipient_id'], ['id'])
     # ### end Alembic commands ###
+    # if environment == "production":
+    #     op.execute(f"ALTER TABLE chatrooms SET SCHEMA {SCHEMA};")
+
 
 
 def downgrade():

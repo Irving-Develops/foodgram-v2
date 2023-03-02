@@ -7,6 +7,9 @@ Create Date: 2022-08-22 19:06:48.268677
 """
 from alembic import op
 import sqlalchemy as sa
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
@@ -25,6 +28,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['follower_id'], ['users.id'], )
     )
     # ### end Alembic commands ###
+    if environment == "production":
+        op.execute(f"ALTER TABLE followers SET SCHEMA {SCHEMA};")
+
 
 
 def downgrade():
