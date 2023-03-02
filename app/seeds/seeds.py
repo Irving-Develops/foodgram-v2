@@ -1,4 +1,4 @@
-from app.models import db, User, Post, Comment, Chatroom, Message, likes
+from app.models import db, User, Post, Comment, Chatroom, Message, likes, environment, SCHEMA
 
 
 # Adds a demo user, you can add other users here if you want
