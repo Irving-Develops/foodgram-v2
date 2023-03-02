@@ -29,7 +29,7 @@ def upgrade():
     op.drop_column('chatrooms', 'recipient_id')
     # ### end Alembic commands ###
     # if environment == "production":
-    #     op.execute(f"ALTER TABLE <table_name> SET SCHEMA {SCHEMA};")
+    #     op.execute(f"ALTER TABLE _name> SET SCHEMA {SCHEMA};")
 
 
 

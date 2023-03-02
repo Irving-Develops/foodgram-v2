@@ -24,8 +24,6 @@ def upgrade():
     op.add_column('chatrooms', sa.Column('creator_id', sa.Integer(), nullable=False))
     op.create_foreign_key(None, 'chatrooms', 'users', ['creator_id'], ['id'])
     # ### end Alembic commands ###
-    if environment == "production":
-        op.execute(f"ALTER TABLE <table_name> SET SCHEMA {SCHEMA};")
 
 
 
